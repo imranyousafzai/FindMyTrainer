@@ -1,0 +1,666 @@
+{
+	"info": {
+		"_postman_id": "bd308e08-c1e1-42d7-a462-0840dc094092",
+		"name": "FMT Test Suite",
+		"description": "API for managing trainers, booking sessions and handling payments.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "33824437-bd308e08-c1e1-42d7-a462-0840dc094092"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register",
+					"item": [
+						{
+							"name": "User Registration",
+							"id": "7016c0e0-3ad2-4bf5-a468-ecc1b57d810c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"password\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								},
+								"description": "Register a new user."
+							},
+							"response": [
+								{
+									"id": "62ad9a63-fed6-442d-9e78-777a906606b8",
+									"name": "User registered successfully.",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"password\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/register",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"register"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					],
+					"id": "52ee9f51-ef88-40ed-bcf8-18e33289e5bc"
+				},
+				{
+					"name": "login",
+					"item": [
+						{
+							"name": "User Login",
+							"id": "f38eaabf-a383-4e68-a943-3a768fd08686",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								},
+								"description": "Authenticate user and return token."
+							},
+							"response": [
+								{
+									"id": "f92d66e9-9525-4c35-b482-3be87a1f8d71",
+									"name": "Login successful.",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/login",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					],
+					"id": "04ce444a-a0a4-4f9e-acc6-e2c47013f757"
+				}
+			],
+			"id": "acfeeebf-75cb-4ec8-8583-3ecb29663a94"
+		},
+		{
+			"name": "trainers",
+			"item": [
+				{
+					"name": "{trainerId}",
+					"item": [
+						{
+							"name": "reviews",
+							"item": [
+								{
+									"name": "Get Trainer Reviews",
+									"id": "cb258303-02d2-4cd5-87f7-298032025d2a",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/trainers/:trainerId/reviews",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"trainers",
+												":trainerId",
+												"reviews"
+											],
+											"variable": [
+												{
+													"key": "trainerId",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Retrieve reviews for a specific trainer."
+									},
+									"response": [
+										{
+											"id": "7f759a77-8ee5-439d-bbcb-2554a4a06d32",
+											"name": "Trainer reviews retrieved successfully.",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/trainers/:trainerId/reviews",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"trainers",
+														":trainerId",
+														"reviews"
+													],
+													"variable": [
+														{
+															"key": "trainerId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": null
+										}
+									]
+								}
+							],
+							"id": "c4af9efb-a287-4176-96c9-b02699969417"
+						},
+						{
+							"name": "availability",
+							"item": [
+								{
+									"name": "Update Trainer Availability",
+									"id": "f444bf41-40c2-4982-99c1-e4121d98f251",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"availability\": [\n    \"<dateTime>\",\n    \"<dateTime>\"\n  ]\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/trainers/:trainerId/availability",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"trainers",
+												":trainerId",
+												"availability"
+											],
+											"variable": [
+												{
+													"key": "trainerId",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Update the availability schedule of a trainer."
+									},
+									"response": [
+										{
+											"id": "8e52bbe7-b6d5-456a-bf1f-65b98f59da50",
+											"name": "Trainer availability updated successfully.",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"availability\": [\n    \"<dateTime>\",\n    \"<dateTime>\"\n  ]\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/trainers/:trainerId/availability",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"trainers",
+														":trainerId",
+														"availability"
+													],
+													"variable": [
+														{
+															"key": "trainerId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": null
+										}
+									]
+								}
+							],
+							"id": "da0e26b5-298a-4771-9d7e-64e382e26608"
+						}
+					],
+					"id": "7ec83615-a1bb-493d-82f6-89af79ef7249"
+				},
+				{
+					"name": "List Trainers",
+					"id": "53a77353-b771-4cda-a471-8602341e009a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/trainers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainers"
+							]
+						},
+						"description": "Retrieve a list of available trainers."
+					},
+					"response": [
+						{
+							"id": "e217e09b-bd36-4ed3-8c7d-948cedb2f9a3",
+							"name": "Trainers retrieved successfully.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/trainers",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"trainers"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Add a Trainer",
+					"id": "d2972610-15de-45e4-8414-8634887f10ec",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"specialty\": \"<string>\",\n  \"availability\": [\n    \"<dateTime>\",\n    \"<dateTime>\"\n  ]\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/trainers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainers"
+							]
+						},
+						"description": "Add a new trainer to the system."
+					},
+					"response": [
+						{
+							"id": "001a9f2f-5f35-4ffd-8abe-218a813ec157",
+							"name": "Trainer added successfully.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"specialty\": \"<string>\",\n  \"availability\": [\n    \"<dateTime>\",\n    \"<dateTime>\"\n  ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/trainers",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"trainers"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			],
+			"id": "a37f09b4-7f79-480e-b70c-004414ad84f3"
+		},
+		{
+			"name": "sessions",
+			"item": [
+				{
+					"name": "book",
+					"item": [
+						{
+							"name": "Book a Session",
+							"id": "57c14f9a-80a0-4d39-82e6-b5c4e58f431d",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"trainerId\": \"<string>\",\n  \"userId\": \"<string>\",\n  \"date\": \"<dateTime>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/sessions/book",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"sessions",
+										"book"
+									]
+								},
+								"description": "Book a training session with a trainer."
+							},
+							"response": [
+								{
+									"id": "686aa881-9983-4b00-815a-d5e7f5a2e883",
+									"name": "Session booked successfully.",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"trainerId\": \"<string>\",\n  \"userId\": \"<string>\",\n  \"date\": \"<dateTime>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/sessions/book",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"sessions",
+												"book"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					],
+					"id": "d89d83f2-5eb1-4427-8691-eb69e74beedc"
+				},
+				{
+					"name": "cancel",
+					"item": [
+						{
+							"name": "Cancel a Session",
+							"id": "93fdf509-f194-493b-a5e3-aa0058a86957",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"sessionId\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/sessions/cancel",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"sessions",
+										"cancel"
+									]
+								},
+								"description": "Cancel a previously booked training session."
+							},
+							"response": [
+								{
+									"id": "f61f487a-246b-4577-9418-830e365b140a",
+									"name": "Session cancelled successfully.",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"sessionId\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/sessions/cancel",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"sessions",
+												"cancel"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					],
+					"id": "eea163e4-b26e-45bf-80e5-89d7273370aa"
+				}
+			],
+			"id": "ca3d3eb5-36ae-4071-98c2-d6cffe242afd"
+		}
+	],
+	"variable": [
+		{
+			"id": "7ed05d44-9f86-4ca2-a8a8-bbaad9813b9f",
+			"key": "baseUrl",
+			"value": "https://api.findmytrainer.com/v1"
+		}
+	]
+}

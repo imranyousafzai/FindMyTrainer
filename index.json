@@ -1,0 +1,196 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "FindMyTrainer API",
+    "version": "1.0.0",
+    "description": "API for managing trainers, booking sessions and handling payments."
+  },
+  "servers": [
+    { "url": "/findmytrainer/v1" }
+  ],
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "summary": "User Registration",
+        "description": "Register a new user.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "User registered successfully." }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "summary": "User Login",
+        "description": "Authenticate user and return token.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": { "type": "string", "format": "email" },
+                  "password": { "type": "string", "format": "password" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Login successful." }
+        }
+      }
+    },
+    "/trainers": {
+      "get": {
+        "summary": "List Trainers",
+        "description": "Retrieve a list of available trainers.",
+        "responses": {
+          "200": { "description": "Trainers retrieved successfully." }
+        }
+      },
+      "post": {
+        "summary": "Add a Trainer",
+        "description": "Add a new trainer to the system.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Trainer"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Trainer added successfully." }
+        }
+      }
+    },
+    "/sessions/book": {
+      "post": {
+        "summary": "Book a Session",
+        "description": "Book a training session with a trainer.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "trainerId": { "type": "string" },
+                  "userId": { "type": "string" },
+                  "date": { "type": "string", "format": "date-time" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Session booked successfully." }
+        }
+      }
+    },
+    "/sessions/cancel": {
+      "post": {
+        "summary": "Cancel a Session",
+        "description": "Cancel a previously booked training session.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "sessionId": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Session cancelled successfully." }
+        }
+      }
+    },
+    "/trainers/{trainerId}/reviews": {
+      "get": {
+        "summary": "Get Trainer Reviews",
+        "description": "Retrieve reviews for a specific trainer.",
+        "parameters": [
+          {
+            "name": "trainerId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Trainer reviews retrieved successfully." }
+        }
+      }
+    },
+    "/trainers/{trainerId}/availability": {
+      "put": {
+        "summary": "Update Trainer Availability",
+        "description": "Update the availability schedule of a trainer.",
+        "parameters": [
+          {
+            "name": "trainerId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "availability": { "type": "array", "items": { "type": "string", "format": "date-time" } }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Trainer availability updated successfully." }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "email": { "type": "string", "format": "email" },
+          "password": { "type": "string", "format": "password" }
+        }
+      },
+      "Trainer": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "specialty": { "type": "string" },
+          "availability": { "type": "array", "items": { "type": "string", "format": "date-time" } }
+        }
+      }
+    }
+  }
+}
